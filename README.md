@@ -152,3 +152,7 @@ Same honesty, applied to this variant:
 Your post ends with 2 answers to credential concentration, topological and cryptographic. This variant adds a third axis: a referee you own versus a referee you rent. The same 3 roles (ciphertext holder, user verifier, key referee) written in OpenBao run the same on any cloud or on none, and the whole boundary is source you can inspect and config you can review. Many teams that care about agent egress are on-prem or on sovereign clouds exactly because of credential concentration fears. I think the post gets stronger if Mode 3 is a pattern with 2 reference implementations, KMS grants and vault-native tokens.
 
 The runnable version is [`demo.sh`](demo.sh) in this repo. If you want, I can turn this into a section for the post.
+
+## Follow-up: Mode 3b with control groups
+
+[`CONTROL-GROUPS.md`](CONTROL-GROUPS.md) and [`control-groups.sh`](control-groups.sh) take the broker variant from part 3 and replace its per-row policy writes with OpenBao 2.7 [control groups](https://openbao.org/docs/concepts/control-groups/). The controller's decrypts are held until the broker approves OpenBao's stored copy of the request, and the broker's only OpenBao rights are review and approve, so it can't escalate the way the per-row policy broker can. 18 checks, OpenBao 2.7.2, same requirements as `demo.sh`.
